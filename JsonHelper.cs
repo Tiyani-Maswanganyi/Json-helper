@@ -10,9 +10,14 @@
                 .Where(c => !Char.IsWhiteSpace(c))
                 .ToArray());
         }
-        
-        
-        
+       
+
+        public static StringContent AsJson(this object o)
+        {
+            var jsonString = JsonConvert.SerializeObject(o);
+            var httpContent = new StringContent(jsonString, Encoding.UTF8, "application/json");
+            return httpContent;
+        }     
         
         /// <summary>
         /// Removes letters from string 
